@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Floating To-Do</title>
+  </head>
+  <body>
+    <div id="todo-header">
+      <span>My Tasks</span>
+      <button id="close-btn" aria-label="Close Widget">
+        <span>×</span>
+      </button>
+    </div>
+
+    <!-- New Task Input Section -->
+    <div id="task-input-container">
+      <input type="text" id="task-name" placeholder="Enter task name" />
+      <select id="task-status">
+        <option value="Pending">Pending</option>
+        <option value="In Progress">In Progress</option>
+        <option value="Completed">Completed</option>
+      </select>
+      <button id="add-task-btn">Add Task</button>
+    </div>
+
+    <ul id="task-list"></ul>
+    <script src="script.js"></script>
+  </body>
+</html>
