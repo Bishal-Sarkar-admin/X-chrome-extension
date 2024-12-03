@@ -1,26 +1,19 @@
 {
   "manifest_version": 3,
-  "name": "Floating To-Do Tracker",
-  "description": "A draggable To-Do list that stays on top and always visible.",
-  "version": "1.1",
-  "permissions": ["activeTab", "scripting", "tabs"],
-  "host_permissions": ["<all_urls>"],
-  "web_accessible_resources": [
-    {
-      "resources": ["index.html", "style.css", "script.js"],
-      "matches": ["<all_urls>"]
+  "name": "Task Tracker PiP",
+  "version": "2.0",
+  "description": "A floating task tracker with Picture-in-Picture support.",
+  "permissions": ["activeTab", "storage"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon64.png",
+      "128": "icons/icon128.png"
     }
-  ],
+  },
   "background": {
     "service_worker": "background.js"
   },
-  "content_scripts": [
-    {
-      "matches": ["<all_urls>"],
-      "js": ["content.js"]
-    }
-  ],
-  "action": {
-    "default_title": "Floating To-Do"
-  }
+  "host_permissions": ["<all_urls>"]
 }

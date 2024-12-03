@@ -1,23 +1,16 @@
-// Handle extension closure
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  if (message.action === "closeExtension") {
-    // Close the current tab or window
-    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-      if (tabs[0]) {
-        chrome.tabs.remove(tabs[0].id);
-      }
-    });
-  }
+// Listen for when the extension icon is clicked
+chrome.action.onClicked.addListener(() => {
+  chrome.windows.create({
+    url: chrome.runtime.getURL("popup.html"),
+    type: "popup",
+    width: 400,
+    height: 500,
+  });
 });
 
-// Existing click listener to inject content script
-chrome.action.onClicked.addListener((tab) => {
-  try {
-    chrome.scripting.executeScript({
-      target: { tabId: tab.id },
-      files: ["content.js"],
-    });
-  } catch (error) {
-    console.error("Error executing content script:", error);
+// Optional: Listen for storage changes to sync tasks across windows
+chrome.storage.onChanged.addListener((changes, area) => {
+  if (area === "local" && changes.tasks) {
+    console.log("Tasks updated:", changes.tasks.newValue);
   }
 });
